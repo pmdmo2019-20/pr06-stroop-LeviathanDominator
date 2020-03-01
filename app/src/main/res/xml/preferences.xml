@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="@string/prefGameCategory_title">
+
+        <ListPreference
+            android:id="@+id/lpGameMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="@string/prefGameMode_defaultValue"
+            android:entries="@array/prefGameMode_entries"
+            android:entryValues="@array/prefGameMode_entryValues"
+            android:icon="@drawable/ic_game_mode_black_24dp"
+            android:key="@string/prefGameMode_key"
+            android:summary="%s"
+            app:title="@string/prefGameMode_title" />
+
+        <ListPreference
+            android:id="@+id/lpGameTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="@string/prefGameTime_defaultValue"
+            android:entries="@array/prefGameTime_entries"
+            android:entryValues="@array/prefGameTime_entryValues"
+            android:icon="@drawable/ic_game_time_black_24dp"
+            android:key="@string/prefGameTime_key"
+            android:summary="%s"
+            app:title="@string/prefGameTime_title" />
+
+        <ListPreference
+            android:id="@+id/lpWorldTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="@string/prefWordTime_defaultValue"
+            android:entries="@array/prefWordTime_entries"
+            android:entryValues="@array/prefWordTime_entryValues"
+            android:icon="@drawable/ic_word_time_black_24dp"
+            android:key="@string/prefWordTime_key"
+            android:summary="%s"
+            app:title="@string/prefWordTime_title" />
+
+        <EditTextPreference
+            android:id="@+id/lpAttempts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="@string/prefAttempts_defaultValue"
+            android:dialogTitle="@string/prefAttempts_dialogTitle"
+            android:icon="@drawable/ic_attempts_black_24dp"
+            android:key="@string/prefAttempts_key"
+            android:maxLength="2"
+            android:title="@string/prefAttempts_title"
+            app:title="@string/prefAttempts_title"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/prefRankingCategory_title">
+        <ListPreference
+            android:id="@+id/lpRankingFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="@string/prefRankingFilter_defaultValue"
+            android:entries="@array/ranking_spnGameMode"
+            android:entryValues="@array/ranking_spnGameMode_values"
+            android:icon="@drawable/ic_ranking_black_24dp"
+            android:key="@string/prefRankingFilter_key"
+            android:summary="%s"
+            app:title="@string/prefRankingFilter_title" />
+    </PreferenceCategory>
+</PreferenceScreen>

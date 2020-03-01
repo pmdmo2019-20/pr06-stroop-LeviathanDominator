@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tlbMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_secondary_variant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/dashboard_title"
+        app:titleTextColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="end">
+
+            <ImageView
+                android:id="@+id/btnHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/main_margin_1x"
+                android:contentDescription="@string/dashboard_lblAbout"
+                android:src="@drawable/ic_game_mode_black_24dp"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/avatar_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlbMain" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnPlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/dashboard_lblPlay"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRankings"
+        app:layout_constraintEnd_toStartOf="@+id/btnSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_fragment" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/dashboard_lblPlay"
+            android:src="@drawable/ic_play_black_24dp"
+            app:tint="@color/playOption" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:text="@string/dashboard_lblPlay"
+            android:textAlignment="center"
+            android:textColor="@color/playOption"
+            tools:ignore="RtlCompat" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/btnSettings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/design_default_color_background"
+        android:contentDescription="@string/dashboard_lblSettings"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_settings_black_24dp"
+        android:tint="@color/settingsOption"
+        app:layout_constraintBottom_toTopOf="@+id/btnAssistant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPlay"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_fragment" />
+
+    <ImageButton
+        android:id="@+id/btnRankings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/design_default_color_background"
+        android:contentDescription="@string/dashboard_lblRanking"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_ranking_black_48dp"
+        android:tint="@color/rankingOption"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayer"
+        app:layout_constraintEnd_toStartOf="@+id/btnAssistant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlay" />
+
+    <ImageButton
+        android:id="@+id/btnPlayer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/design_default_color_background"
+        android:contentDescription="@string/dashboard_lblPlayer"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_player_black_24dp"
+        android:tint="@color/playerOption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAbout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRankings" />
+
+    <ImageButton
+        android:id="@+id/btnAbout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/design_default_color_background"
+        android:contentDescription="@string/dashboard_lblAbout"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_about_black_24dp"
+        android:tint="@color/aboutOption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/btnAssistant" />
+
+    <ImageButton
+        android:id="@+id/btnAssistant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/design_default_color_background"
+        android:contentDescription="@string/dashboard_lblAssistant"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_assistant_black_24dp"
+        android:tint="@color/assistantOption"
+        app:layout_constraintBottom_toTopOf="@+id/btnAbout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnRankings"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings" />
+</androidx.constraintlayout.widget.ConstraintLayout>
