@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -58,7 +57,7 @@ class RankingsFragment : Fragment() {
             ArrayAdapter.createFromResource(
                 it,
                 R.array.ranking_spnGameMode_values,
-               android.R.layout.simple_spinner_item
+                android.R.layout.simple_spinner_item
             )
         }.also {
             it!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -66,7 +65,7 @@ class RankingsFragment : Fragment() {
         }
 
         val rankingObserver = Observer<List<Ranking>> {
-            if (it.isEmpty()){
+            if (it.isEmpty()) {
                 clEmptyPlayerList.visibility = View.VISIBLE
             } else {
                 clEmptyPlayerList.visibility = View.INVISIBLE
@@ -90,14 +89,14 @@ class RankingsFragment : Fragment() {
             }
 
             private fun rankingFilter(position: Int): RankingFilter {
-                when(position){
-                    1->return RankingFilter.TIME
-                    2->return RankingFilter.ATTEMPTS
+                when (position) {
+                    1 -> return RankingFilter.TIME
+                    2 -> return RankingFilter.ATTEMPTS
                 }
                 return RankingFilter.ALL
             }
         }
-            rvRankings.run {
+        rvRankings.run {
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
@@ -107,7 +106,7 @@ class RankingsFragment : Fragment() {
                 AlertDialog.Builder(it1)
                     .setTitle(getString(R.string.help_title))
                     .setMessage(getString(R.string.ranking_help_description))
-                    .setPositiveButton(getString(R.string.help_accept)){ _, _ -> }
+                    .setPositiveButton(getString(R.string.help_accept)) { _, _ -> }
                     .create()
                     .show()
             }
@@ -116,7 +115,10 @@ class RankingsFragment : Fragment() {
 
     private fun getDefaultSelection(): Int {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return when (prefs.getString(getString(R.string.prefRankingFilter_key), getString(R.string.prefRankingFilter_defaultValue))) {
+        return when (prefs.getString(
+            getString(R.string.prefRankingFilter_key),
+            getString(R.string.prefRankingFilter_defaultValue)
+        )) {
             context!!.getString(R.string.ranking_spnGameMode_all) -> {
                 0
             }

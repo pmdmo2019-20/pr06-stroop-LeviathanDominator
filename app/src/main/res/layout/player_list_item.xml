@@ -7,15 +7,18 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/dashboard_card_image_size"
+        android:layout_marginBottom="@dimen/main_card_elevation"
+        android:elevation="@dimen/main_card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imgAvatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/player_selection_imgAvatar"
             app:srcCompat="@drawable/avatar_01_mexican"
             tools:layout_editor_absoluteX="-194dp"
             tools:layout_editor_absoluteY="-99dp" />
@@ -23,7 +26,8 @@
         <TextView
             android:id="@+id/lblName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="@dimen/main_textSize_3x" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

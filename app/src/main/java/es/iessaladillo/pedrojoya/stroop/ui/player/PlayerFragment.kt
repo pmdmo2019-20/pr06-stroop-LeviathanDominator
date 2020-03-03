@@ -92,14 +92,14 @@ class PlayerFragment : Fragment() {
                 .show()
         }
 
-        btnEdit.setOnClickListener{
+        /*btnEdit.setOnClickListener{
             val fragment =
                 EditFragment()
             val transaction = this.fragmentManager!!.beginTransaction()
             transaction.replace(R.id.frgContainer, fragment, "main")
-            transaction.addToBackStack("main")
+            transaction.addToBackStack(null)
             transaction.commit()
-        }
+        }*/
     }
 
     private fun setupFloatingButton(view: View?) {
