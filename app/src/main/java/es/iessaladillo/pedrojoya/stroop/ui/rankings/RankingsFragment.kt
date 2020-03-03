@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -75,6 +77,16 @@ class RankingsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
+        }
+        btnHelp?.setOnClickListener {
+            context?.let { it1 ->
+                AlertDialog.Builder(it1)
+                    .setTitle(getString(R.string.help_title))
+                    .setMessage(getString(R.string.ranking_help_description))
+                    .setPositiveButton(getString(R.string.help_accept)){ _, _ -> }
+                    .create()
+                    .show()
+            }
         }
     }
 

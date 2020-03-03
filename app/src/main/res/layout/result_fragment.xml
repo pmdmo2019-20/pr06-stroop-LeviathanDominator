@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,25 +12,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/dashboard_title"
-        app:titleTextColor="@color/white">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="end">
-
-            <ImageView
-                android:id="@+id/btnHelp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/main_margin_1x"
-                android:contentDescription="@string/dashboard_lblAbout"
-                android:src="@drawable/ic_game_mode_black_24dp"
-                app:tint="@color/white" />
-        </LinearLayout>
-
-    </androidx.appcompat.widget.Toolbar>
+        app:title="@string/game_result_title"
+        app:titleTextColor="@color/white"/>
 
     <FrameLayout
         android:id="@+id/avatar_fragment"
@@ -46,6 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_result_title"
+        android:textAllCaps="true"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_4x"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +70,9 @@
         android:id="@+id/lblIncorrectAnswers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginBottom="@dimen/main_margin_4x"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_3x"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +82,9 @@
         android:id="@+id/lblPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginBottom="@dimen/main_margin_4x"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_3x"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +94,9 @@
         android:id="@+id/lblCorrectAnswers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginBottom="@dimen/main_margin_4x"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_3x"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

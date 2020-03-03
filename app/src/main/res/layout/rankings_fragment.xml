@@ -16,7 +16,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/ranking_title"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white" >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="end">
+
+            <ImageView
+                android:id="@+id/btnHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/main_margin_1x"
+                android:contentDescription="@string/dashboard_lblAbout"
+                app:srcCompat="@drawable/ic_help_black_24dp"
+                app:tint="@color/white" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <Spinner
         android:id="@+id/spFilter"

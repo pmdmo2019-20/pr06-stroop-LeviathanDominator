@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.ui.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,8 +19,6 @@ class CreatePlayerAvatarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.create_player_avatar_fragment, container, false)
-        /*setupToolbar(view)
-        setupButtons(view)*/
         return view
     }
 

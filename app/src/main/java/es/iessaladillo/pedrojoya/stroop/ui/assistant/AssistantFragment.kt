@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.ui.assistant.pages.*
+import kotlinx.android.synthetic.main.assistant_fragment.*
 
 private const val NUM_PAGES = 8
 
@@ -33,7 +34,7 @@ class AssistantFragment : Fragment() {
         viewPager.adapter = pagerAdapter
         tabLayout = view.findViewById(R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)
-        toolbar = view.findViewById(R.id.toolbar)
+        toolbar = view.findViewById(R.id.tlbAssistant)
         return view
     }
 

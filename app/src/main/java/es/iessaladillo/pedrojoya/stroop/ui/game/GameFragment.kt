@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.RESULT_KEY
 import es.iessaladillo.pedrojoya.stroop.models.Word
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
 import es.iessaladillo.pedrojoya.stroop.models.RankingFilter
@@ -70,7 +71,7 @@ class GameFragment : Fragment() {
                 }
                 val resultFragment = ResultFragment()
                 val bundle = Bundle()
-                bundle.putSerializable("Result", result)
+                bundle.putSerializable(RESULT_KEY, result)
                 resultFragment.arguments = bundle
                 val transaction = this.fragmentManager!!.beginTransaction()
                 transaction.replace(R.id.frgContainer, resultFragment, "game")

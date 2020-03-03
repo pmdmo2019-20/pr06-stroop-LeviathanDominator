@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.stroop
 
+const val TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT"
+const val RESULT_KEY = "result"
 const val NO_PLAYER: Long = -1
 const val PREF_KEY_CURRENT_PLAYER_ID_KEY = "prefCurrentPlayerId"
 const val PREF_KEY_FIRST_TIME = "prefFirstTime"

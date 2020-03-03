@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.ui.avatar
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -16,7 +16,8 @@ class AvatarListAdapter : RecyclerView.Adapter<AvatarListAdapter.ViewHolder>() {
     var selectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.avatar_list_item, parent, false)
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.avatar_list_item, parent, false)
         )
 
     @SuppressLint("ResourceAsColor")
@@ -24,7 +25,7 @@ class AvatarListAdapter : RecyclerView.Adapter<AvatarListAdapter.ViewHolder>() {
         holder.bind(avatars[position])
         if (selectedPosition == position) holder.itemView.setBackgroundColor(
             R.color.gameGreen
-        ) else holder.itemView.setBackgroundColor(R.color.gameRed)
+        )
         holder.itemView.setOnClickListener {
             RepositoryImpl._newPlayerAvatar.value = position
             selectedPosition = position
@@ -32,10 +33,6 @@ class AvatarListAdapter : RecyclerView.Adapter<AvatarListAdapter.ViewHolder>() {
         }
     }
 
-
-    private fun getItem(position: Int): Int {
-        return avatars[position]
-    }
 
     override fun getItemCount(): Int {
         return avatars.size
