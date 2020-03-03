@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.ui.Player
-import es.iessaladillo.pedrojoya.stroop.ui.RepositoryImpl
-import es.iessaladillo.pedrojoya.stroop.ui.RepositoryImpl.playerList
+import es.iessaladillo.pedrojoya.stroop.models.Player
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl.playerList
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.player_list_item.*
 

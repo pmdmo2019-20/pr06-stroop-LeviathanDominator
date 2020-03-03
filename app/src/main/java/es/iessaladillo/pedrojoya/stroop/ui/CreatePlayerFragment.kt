@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.create_player_avatar_fragment.*
 import kotlinx.android.synthetic.main.create_player_fragment.*
 
@@ -38,7 +37,7 @@ class CreatePlayerFragment : Fragment() {
             RepositoryImpl.createPlayer(txtUserName.text.toString())
         }
         rvAvatars.run {
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.player_creation_numColumns))
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
         }

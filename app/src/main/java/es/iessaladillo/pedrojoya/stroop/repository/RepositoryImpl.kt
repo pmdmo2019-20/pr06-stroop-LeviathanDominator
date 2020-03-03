@@ -1,26 +1,24 @@
 @file:Suppress("ObjectPropertyName")
 
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
+import es.iessaladillo.pedrojoya.stroop.models.Player
+import es.iessaladillo.pedrojoya.stroop.models.Ranking
 
 object RepositoryImpl : Repository {
 
-    private val rankingMutableList: MutableList<Ranking> = mutableListOf(
-        Ranking(Player("Baldomero", avatars[1]), "Time", 2, 2, 2, 20)
-    )
+    private val rankingMutableList = mutableListOf<Ranking>()
 
     private val playerMutableList: MutableList<Player> = mutableListOf(
-        Player("Baldomero", avatars[1]),
-        Player("Pacopakero", avatars[4])
+        Player("Baldomero", avatars[1])
     )
 
     private val _playerList: MutableLiveData<List<Player>> =
         MutableLiveData(requeryPlayers())
-
     val playerList: LiveData<List<Player>>
         get() = _playerList
 
@@ -28,9 +26,9 @@ object RepositoryImpl : Repository {
     val currentPlayer: LiveData<Player>
         get() = _currentPlayer
 
-    val _newPlayer: MutableLiveData<Int> = MutableLiveData()
-    val newPlayer: LiveData<Int>
-        get() = _newPlayer
+    val _newPlayerAvatar: MutableLiveData<Int> = MutableLiveData()
+    val newPlayerAvatar: LiveData<Int>
+        get() = _newPlayerAvatar
 
     private val _rankings: MutableLiveData<List<Ranking>> =
         MutableLiveData(requeryRankings())
@@ -39,14 +37,15 @@ object RepositoryImpl : Repository {
         get() = _rankings
 
     private fun updateLiveData() {
-        _rankings.value = requeryRankings()
+        _rankings.value =
+            requeryRankings()
     }
 
     private fun requeryRankings() =
         rankingMutableList.toList()
 
     private fun requeryPlayers() =
-        playerMutableList.toList()
+       playerMutableList.toList()
 
     override fun deleteAllRankings() {
         rankingMutableList.clear()
@@ -74,10 +73,25 @@ object RepositoryImpl : Repository {
     }
 
     override fun createPlayer(name: String) {
-        if (name != "" && newPlayer.value != null) {
-            playerMutableList.add(Player(name, newPlayer.value!!))
-            _newPlayer.value = R.drawable.logo
+        if (name != "" && newPlayerAvatar.value != null) {
+            playerMutableList.add(
+                Player(
+                    name,
+                    avatars[newPlayerAvatar.value!!]
+                )
+            )
+            requeryPlayers()
+            _playerList.value =
+                playerMutableList
+            //_newPlayerAvatar.value = null
         }
+    }
+
+    override fun newRanking(ranking: Ranking) {
+        rankingMutableList.add(ranking)
+        requeryRankings()
+        _rankings.value =
+            rankingMutableList
     }
 
 }

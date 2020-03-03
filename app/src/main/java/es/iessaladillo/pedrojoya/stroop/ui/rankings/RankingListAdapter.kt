@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.ui.Ranking
-import es.iessaladillo.pedrojoya.stroop.ui.RepositoryImpl.rankings
+import es.iessaladillo.pedrojoya.stroop.models.Ranking
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl.rankings
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.ranking_list_item.*
 

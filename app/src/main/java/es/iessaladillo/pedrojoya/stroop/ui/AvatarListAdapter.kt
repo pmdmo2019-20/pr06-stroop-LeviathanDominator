@@ -1,13 +1,13 @@
 package es.iessaladillo.pedrojoya.stroop.ui
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.avatar_list_item.*
 
@@ -26,7 +26,7 @@ class AvatarListAdapter : RecyclerView.Adapter<AvatarListAdapter.ViewHolder>() {
             R.color.gameGreen
         ) else holder.itemView.setBackgroundColor(R.color.gameRed)
         holder.itemView.setOnClickListener {
-            RepositoryImpl._newPlayer.value = position
+            RepositoryImpl._newPlayerAvatar.value = position
             selectedPosition = position
             notifyDataSetChanged()
         }

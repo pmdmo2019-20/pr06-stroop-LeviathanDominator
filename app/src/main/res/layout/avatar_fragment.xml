@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/assistant_imgIcon_size"
+        android:layout_height="@dimen/assistant_imgIcon_size"
         android:contentDescription="@string/dashboard_imgAvatar"
         app:layout_constraintBottom_toTopOf="@+id/lblUserName"
         app:layout_constraintEnd_toEndOf="parent"

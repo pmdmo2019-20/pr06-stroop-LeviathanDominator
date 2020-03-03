@@ -10,8 +10,6 @@ private const val TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT"
 
 class MainActivity : AppCompatActivity() {
 
-    // TODO
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialFragment() {
-        if (false){
+        if (false){ // TODO Start with assistant
             val assistantFragment =
                 AssistantFragment()
             supportFragmentManager
@@ -33,6 +31,11 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.frgContainer, mainFragment, TAG_DETAIL_FRAGMENT)
                 .commit()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

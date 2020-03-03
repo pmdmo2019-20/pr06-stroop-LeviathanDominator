@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.create_player_avatar_fragment.*
 
 class CreatePlayerAvatarFragment : Fragment() {
@@ -28,7 +29,7 @@ class CreatePlayerAvatarFragment : Fragment() {
         val nameObserver = Observer<Int> { avatarId ->
             imgAvatar.setImageResource(avatars[avatarId])
         }
-        RepositoryImpl.newPlayer.observe(viewLifecycleOwner, nameObserver)
+        RepositoryImpl.newPlayerAvatar.observe(viewLifecycleOwner, nameObserver)
     }
 
 }

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
+import es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment
 import es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment
 import es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment
 import es.iessaladillo.pedrojoya.stroop.ui.player.PlayerFragment
@@ -67,7 +69,8 @@ class MainFragment : Fragment() {
             changeFragment(playerFragment)
         }
         view.btnAbout?.setOnClickListener{
-            val aboutFragment = AboutFragment()
+            val aboutFragment =
+                AboutFragment()
             changeFragment(aboutFragment)
         }
         view.btnAssistant?.setOnClickListener {

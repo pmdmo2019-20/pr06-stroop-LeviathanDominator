@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.models.Player
+import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.avatar_fragment.*
 
 class AvatarFragment: Fragment(){

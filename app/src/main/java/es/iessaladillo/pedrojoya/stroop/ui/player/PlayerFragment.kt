@@ -37,7 +37,7 @@ class PlayerFragment : Fragment() {
 
     private fun setupViews() {
         rvPlayers.run {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.player_selection_numColumns))
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
         }
