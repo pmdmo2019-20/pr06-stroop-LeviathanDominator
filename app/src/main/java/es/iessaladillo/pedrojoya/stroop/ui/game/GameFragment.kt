@@ -37,7 +37,7 @@ class GameFragment : Fragment() {
 
     private fun startGame() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val gameMode = prefs.getString(getString(R.string.prefGameMode_key), getString(R.string.prefGameMode_key))
+        val gameMode = prefs.getString(getString(R.string.prefGameMode_key), getString(R.string.prefGameMode_defaultValue))
             ?.let { setGameMode(it) }
         val gameTime = prefs.getString(getString(R.string.prefGameTime_key), getString(R.string.prefGameTime_defaultValue))!!.toInt()
         val wordTime = prefs.getString(getString(R.string.prefWordTime_key), getString(R.string.prefWordTime_defaultValue))!!.toInt()
@@ -78,7 +78,7 @@ class GameFragment : Fragment() {
                 transaction.commit()
             }
         }
-        if (gameMode!! == RankingFilter.ATTEMPTS){
+        if (gameMode == RankingFilter.ATTEMPTS){
             viewModel.attemptsGameMode(attempts)
             lblPointsOrAttempts.text = getString(R.string.game_attempts)
             viewModel.attempts.observe(viewLifecycleOwner, pointsOrAttemptsObserver)
