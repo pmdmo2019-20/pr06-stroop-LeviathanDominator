@@ -4,6 +4,7 @@ import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import es.iessaladillo.pedrojoya.stroop.POINTS_PER_CORRECT_ANSWER
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.models.Word
 import kotlin.concurrent.thread
@@ -130,7 +131,7 @@ class GameViewModel(
     private fun checkWord(right: Boolean) {
         if (word.value!!.correct == right){
             _correct.value = correct.value!! + 1
-            _points.value = points.value!! + 10
+            _points.value = points.value!! + POINTS_PER_CORRECT_ANSWER
         } else {
             _attempts.value = attempts.value!! - 1
         }

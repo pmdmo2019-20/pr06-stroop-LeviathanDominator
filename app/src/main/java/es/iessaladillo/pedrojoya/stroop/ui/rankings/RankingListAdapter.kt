@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
+import es.iessaladillo.pedrojoya.stroop.models.RankingFilter
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl.rankings
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.ranking_list_item.*
@@ -32,14 +33,23 @@ class RankingListAdapter : RecyclerView.Adapter<RankingListAdapter.ViewHolder>()
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(ranking: Ranking) {
             ranking.run {
-                imgAvatar.setImageResource(this.player.avatarId)
-                lblGameMode.text = this.gameMode
-                lblMinutes.text = this.minutes.toString()
-                lblCorrect.text = this.correct.toString()
-                lblWords.text = this.words.toString()
-                lblPoints.text = this.points.toString()
+                imgAvatar.setImageResource(player.avatarId)
+                lblGameMode.text = setMode(gameMode)
+                lblMinutes.text = minutes.toString()
+                lblCorrect.text = correct.toString()
+                lblWords.text = words.toString()
+                lblPoints.text = points.toString()
             }
 
+        }
+
+        private fun setMode(gameMode: RankingFilter): String {
+            if (gameMode == RankingFilter.ATTEMPTS){
+                return "Attempts"
+            } else if (gameMode == RankingFilter.TIME){
+                return "Time"
+            }
+            return ""
         }
 
     }

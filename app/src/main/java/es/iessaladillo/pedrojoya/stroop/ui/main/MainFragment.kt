@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.ui.main
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -12,6 +12,7 @@ import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment
 import es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment
+import es.iessaladillo.pedrojoya.stroop.ui.avatar.AvatarFragment
 import es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment
 import es.iessaladillo.pedrojoya.stroop.ui.player.PlayerFragment
 import es.iessaladillo.pedrojoya.stroop.ui.rankings.RankingsFragment
@@ -38,7 +39,9 @@ class MainFragment : Fragment() {
 
     private fun setupAvatarFragment() {
         val ft: FragmentTransaction = fragmentManager!!.beginTransaction()
-        ft.replace(R.id.avatar_fragment, AvatarFragment())
+        ft.replace(R.id.avatar_fragment,
+            AvatarFragment()
+        )
         ft.commit()
     }
 

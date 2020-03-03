@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tlbSettings"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_secondary_variant"
@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/main_margin_1x"
                 android:contentDescription="@string/dashboard_lblAbout"
-                android:src="@drawable/ic_game_mode_black_24dp"
+                app:srcCompat="@drawable/ic_help_black_24dp"
                 app:tint="@color/white" />
         </LinearLayout>
 

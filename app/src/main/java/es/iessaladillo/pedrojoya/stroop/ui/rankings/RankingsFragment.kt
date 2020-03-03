@@ -1,18 +1,26 @@
 package es.iessaladillo.pedrojoya.stroop.ui.rankings
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.models.Ranking
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.rankings_fragment.*
 
 class RankingsFragment : Fragment() {
+
+    private lateinit var toolbar: Toolbar
 
     private val listAdapter: RankingListAdapter =
         RankingListAdapter()
@@ -27,15 +35,61 @@ class RankingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Toast.makeText(context, RepositoryImpl.rankings.value?.size.toString(), Toast.LENGTH_LONG).show()
         setupViews()
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        val activity = (activity as AppCompatActivity)
+        toolbar = view!!.findViewById(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+            activity.onBackPressed()
+        }
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupViews() {
+        context?.let {
+            ArrayAdapter.createFromResource(
+                it,
+                R.array.ranking_spnGameMode_values,
+               android.R.layout.simple_spinner_item
+            )
+        }.also {
+            it!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spFilter.adapter = it
+        }
+
+        val rankingObserver = Observer<List<Ranking>> {
+            if (it.isEmpty()){
+                clEmptyPlayerList.visibility = View.VISIBLE
+            } else {
+                clEmptyPlayerList.visibility = View.INVISIBLE
+            }
+        }
+        RepositoryImpl.rankings.observe(viewLifecycleOwner, rankingObserver)
+
+        spFilter.setSelection(getDefaultSelection())
         rvRankings.run {
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
+        }
+    }
+
+    private fun getDefaultSelection(): Int {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return when (prefs.getString(getString(R.string.prefRankingFilter_key), getString(R.string.prefRankingFilter_defaultValue))) {
+            context!!.getString(R.string.ranking_spnGameMode_all) -> {
+                0
+            }
+            context!!.getString(R.string.ranking_spnGameMode_time) -> {
+                1
+            }
+            else -> {
+                2
+            }
         }
     }
 }

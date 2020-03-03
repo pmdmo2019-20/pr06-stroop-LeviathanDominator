@@ -8,34 +8,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.ui.AvatarFragment
+import es.iessaladillo.pedrojoya.stroop.ui.avatar.AvatarFragment
 import kotlinx.android.synthetic.main.about_fragment.view.*
 
 class AboutFragment : Fragment() {
+
+    private lateinit var toolbar: Toolbar
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.about_fragment, container, false)
-        setupToolbar()
-
         setupAvatarFragment()
         setupButtons(view)
         return view
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupToolbar()
+    }
+
     private fun setupToolbar() {
-        (requireActivity() as AppCompatActivity).setSupportActionBar(view?.findViewById(R.id.toolbar))
-        (requireActivity() as AppCompatActivity).supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true);
-            setHasOptionsMenu(false)
-            setTitle(R.string.settings_title)
+        val activity = (activity as AppCompatActivity)
+        toolbar = view!!.findViewById(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+            activity.onBackPressed()
         }
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupAvatarFragment() {
@@ -47,13 +54,7 @@ class AboutFragment : Fragment() {
     }
 
     private fun setupButtons(view: View) {
-        view.btnHelp?.setOnClickListener {
-            Toast.makeText(view.context, "Test", Toast.LENGTH_LONG).show()
-            val dialog: Dialog = AlertDialog.Builder(context)
-                .setTitle("Test")
-                .setMessage("Testtest")
-                .create()
-        }
+
     }
 
 }

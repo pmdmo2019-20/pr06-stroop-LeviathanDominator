@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import es.iessaladillo.pedrojoya.stroop.R
-import es.iessaladillo.pedrojoya.stroop.ui.AvatarFragment
-import es.iessaladillo.pedrojoya.stroop.ui.MainFragment
+import es.iessaladillo.pedrojoya.stroop.ui.avatar.AvatarFragment
+import es.iessaladillo.pedrojoya.stroop.ui.main.MainFragment
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.result_fragment.*
@@ -29,7 +29,9 @@ class ResultFragment : Fragment() {
 
     private fun setupAvatarFragment() {
         val ft: FragmentTransaction = fragmentManager!!.beginTransaction()
-        ft.replace(R.id.avatar_fragment, AvatarFragment())
+        ft.replace(R.id.avatar_fragment,
+            AvatarFragment()
+        )
         ft.commit()
     }
 

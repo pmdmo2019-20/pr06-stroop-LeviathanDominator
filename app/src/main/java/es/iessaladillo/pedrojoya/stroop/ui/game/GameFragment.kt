@@ -11,6 +11,7 @@ import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.models.Word
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
+import es.iessaladillo.pedrojoya.stroop.models.RankingFilter
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import es.iessaladillo.pedrojoya.stroop.ui.result.ResultFragment
 import kotlinx.android.synthetic.main.game_fragment.*
@@ -37,6 +38,7 @@ class GameFragment : Fragment() {
     private fun startGame() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val gameMode = prefs.getString(getString(R.string.prefGameMode_key), getString(R.string.prefGameMode_key))
+            ?.let { setGameMode(it) }
         val gameTime = prefs.getString(getString(R.string.prefGameTime_key), getString(R.string.prefGameTime_defaultValue))!!.toInt()
         val wordTime = prefs.getString(getString(R.string.prefWordTime_key), getString(R.string.prefWordTime_defaultValue))!!.toInt()
         val attempts = prefs.getString(getString(R.string.prefAttempts_key), getString(R.string.prefAttempts_defaultValue))!!.toInt()
@@ -59,11 +61,13 @@ class GameFragment : Fragment() {
         }
         val isGameFinishedObserver = Observer<Boolean> {
             if (it) {
-                val result = Ranking(
-                    RepositoryImpl.currentPlayer.value!!,
-                    gameMode.toString(), gameTime, viewModel.wordsNum.value!!, viewModel.correct
-                        .value!!, viewModel.points.value!!
-                )
+                val result = gameMode?.let { mode ->
+                    Ranking(
+                        RepositoryImpl.playerList.value!![RepositoryImpl.currentPlayer.value!!],
+                        mode, gameTime, viewModel.wordsNum.value!!, viewModel.correct
+                            .value!!, viewModel.points.value!!
+                    )
+                }
                 val resultFragment = ResultFragment()
                 val bundle = Bundle()
                 bundle.putSerializable("Result", result)
@@ -74,7 +78,7 @@ class GameFragment : Fragment() {
                 transaction.commit()
             }
         }
-        if (!gameMode.equals(getString(R.string.prefGameMode_defaultValue))){
+        if (gameMode!! == RankingFilter.ATTEMPTS){
             viewModel.attemptsGameMode(attempts)
             lblPointsOrAttempts.text = getString(R.string.game_attempts)
             viewModel.attempts.observe(viewLifecycleOwner, pointsOrAttemptsObserver)
@@ -87,6 +91,15 @@ class GameFragment : Fragment() {
         viewModel.correct.observe(viewLifecycleOwner, correctObserver)
         viewModel.startGameThread(gameTime, wordTime)
         viewModel.isGameFinishedLiveData.observe(viewLifecycleOwner, isGameFinishedObserver)
+    }
+
+    private fun setGameMode(string: String): RankingFilter? {
+        if (string == context!!.getString(R.string.ranking_spnGameMode_attempts)){
+            return RankingFilter.ATTEMPTS
+        } else if (string == context!!.getString(R.string.ranking_spnGameMode_attempts)){
+            return RankingFilter.TIME
+        }
+        return null
     }
 
     private fun setupViews() {

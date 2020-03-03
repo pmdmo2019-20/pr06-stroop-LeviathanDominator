@@ -4,26 +4,26 @@ package es.iessaladillo.pedrojoya.stroop.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import es.iessaladillo.pedrojoya.stroop.NO_PLAYER
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.avatars
 import es.iessaladillo.pedrojoya.stroop.models.Player
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
+import es.iessaladillo.pedrojoya.stroop.models.RankingFilter
 
 object RepositoryImpl : Repository {
 
     private val rankingMutableList = mutableListOf<Ranking>()
 
-    private val playerMutableList: MutableList<Player> = mutableListOf(
-        Player("Baldomero", avatars[1])
-    )
+    private val playerMutableList: MutableList<Player> = mutableListOf()
 
     private val _playerList: MutableLiveData<List<Player>> =
         MutableLiveData(requeryPlayers())
     val playerList: LiveData<List<Player>>
         get() = _playerList
 
-    private val _currentPlayer: MutableLiveData<Player> = MutableLiveData()
-    val currentPlayer: LiveData<Player>
+    private val _currentPlayer: MutableLiveData<Int> = MutableLiveData(NO_PLAYER.toInt())
+    val currentPlayer: LiveData<Int>
         get() = _currentPlayer
 
     val _newPlayerAvatar: MutableLiveData<Int> = MutableLiveData()
@@ -32,9 +32,12 @@ object RepositoryImpl : Repository {
 
     private val _rankings: MutableLiveData<List<Ranking>> =
         MutableLiveData(requeryRankings())
-
     val rankings: LiveData<List<Ranking>>
         get() = _rankings
+// TODO User filter
+    private val _rankingsFilter: MutableLiveData<RankingFilter> = MutableLiveData()
+    val rankingsFilter: LiveData<RankingFilter>
+        get() = _rankingsFilter
 
     private fun updateLiveData() {
         _rankings.value =
@@ -45,7 +48,7 @@ object RepositoryImpl : Repository {
         rankingMutableList.toList()
 
     private fun requeryPlayers() =
-       playerMutableList.toList()
+        playerMutableList.toList()
 
     override fun deleteAllRankings() {
         rankingMutableList.clear()
@@ -54,7 +57,7 @@ object RepositoryImpl : Repository {
 
     override fun getCurrentPlayerAvatar(): Int {
         return if (currentPlayer.value != null) {
-            currentPlayer.value!!.avatarId
+            playerList.value!![currentPlayer.value!!].avatarId
         } else {
             R.drawable.logo
         }
@@ -62,14 +65,14 @@ object RepositoryImpl : Repository {
 
     override fun getCurrentPlayerName(): String {
         return if (currentPlayer.value != null) {
-            currentPlayer.value!!.name
+            playerList.value!![currentPlayer.value!!].name
         } else {
             "No player selected"
         }
     }
 
     override fun selectPlayer(playerId: Int) {
-        _currentPlayer.value = playerList.value!![playerId]
+        _currentPlayer.value = playerId
     }
 
     override fun createPlayer(name: String) {
@@ -83,7 +86,6 @@ object RepositoryImpl : Repository {
             requeryPlayers()
             _playerList.value =
                 playerMutableList
-            //_newPlayerAvatar.value = null
         }
     }
 
@@ -92,6 +94,10 @@ object RepositoryImpl : Repository {
         requeryRankings()
         _rankings.value =
             rankingMutableList
+    }
+
+    override fun setRankingFilter(filter: RankingFilter) {
+        _rankingsFilter.value = filter
     }
 
 }

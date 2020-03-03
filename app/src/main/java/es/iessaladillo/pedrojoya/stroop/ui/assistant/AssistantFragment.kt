@@ -39,14 +39,16 @@ class AssistantFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
         val activity = (activity as AppCompatActivity)
         toolbar.setNavigationOnClickListener {
             activity.onBackPressed()
         }
         activity.setSupportActionBar(toolbar)
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        /*val upArrow =  context!!.getDrawable(R.drawable.ic_launcher_background);
-        activity.supportActionBar?.setHomeAsUpIndicator(upArrow);*/
     }
 
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) :

@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/main_toolbar_elevation"
+        android:text="@string/player_selection_btnEdit"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar_fragment"
+        app:layout_constraintStart_toEndOf="@+id/imgEdit"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <ImageView
+        android:id="@+id/imgEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/main_margin_4x"
+        android:contentDescription="@string/player_selection_btnEdit"
+        android:elevation="@dimen/main_toolbar_elevation"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnEdit"
+        app:srcCompat="@drawable/ic_player_edition_black_24dp"
+        app:tint="@color/white" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tlbPlay"
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_secondary_variant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/dashboard_title"
+        app:title="@string/player_selection_title"
         app:titleTextColor="@color/white">
 
         <LinearLayout
@@ -27,11 +50,46 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/main_margin_1x"
                 android:contentDescription="@string/dashboard_lblAbout"
-                android:src="@drawable/ic_game_mode_black_24dp"
+                app:srcCompat="@drawable/ic_help_black_24dp"
                 app:tint="@color/white" />
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clEmptyPlayerList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_fragment">
+
+        <ImageView
+            android:id="@+id/imgPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/ranking_no_games_yet"
+            app:layout_constraintBottom_toTopOf="@+id/lblPlayer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_player_add_black_48dp"
+            app:tint="@color/playerOption" />
+
+        <TextView
+            android:id="@+id/lblPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_selection_no_players_yet"
+            android:textColor="@color/playerOption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgPlayer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/avatar_fragment"
@@ -39,7 +97,7 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlbPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnCreatePlayer"

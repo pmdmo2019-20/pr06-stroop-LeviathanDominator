@@ -28,15 +28,15 @@ class PlayerListAdapter : RecyclerView.Adapter<PlayerListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(playerList.value!![position])
         if (position < playerList.value!!.size) {
-            // Bind your view here
             holder.itemView.setOnClickListener {
                 it.setBackgroundResource(R.color.gameGreen)
                 RepositoryImpl.selectPlayer(position)
             }
-        }}
+        }
+    }
 
     class ViewHolder(override val containerView: View) :
-        RecyclerView.ViewHolder(containerView), LayoutContainer  {
+        RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(player: Player) {
             player.run {
                 imgAvatar.setImageResource(player.avatarId)

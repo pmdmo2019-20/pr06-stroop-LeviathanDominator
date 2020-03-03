@@ -35,6 +35,7 @@ class CreatePlayerFragment : Fragment() {
     private fun setupViews() {
         btnCreatePlayer.setOnClickListener{
             RepositoryImpl.createPlayer(txtUserName.text.toString())
+            fragmentManager!!.popBackStack()
         }
         rvAvatars.run {
             layoutManager = GridLayoutManager(context, resources.getInteger(R.integer.player_creation_numColumns))
