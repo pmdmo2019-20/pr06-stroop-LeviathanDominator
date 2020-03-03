@@ -96,7 +96,7 @@ class GameFragment : Fragment() {
     private fun setGameMode(string: String): RankingFilter? {
         if (string == context!!.getString(R.string.ranking_spnGameMode_attempts)){
             return RankingFilter.ATTEMPTS
-        } else if (string == context!!.getString(R.string.ranking_spnGameMode_attempts)){
+        } else if (string == context!!.getString(R.string.ranking_spnGameMode_time)){
             return RankingFilter.TIME
         }
         return null
