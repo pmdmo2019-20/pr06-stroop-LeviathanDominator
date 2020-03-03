@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui.assistant
+package es.iessaladillo.pedrojoya.stroop.ui.assistant.pages
 
 import android.os.Bundle
 import android.view.LayoutInflater

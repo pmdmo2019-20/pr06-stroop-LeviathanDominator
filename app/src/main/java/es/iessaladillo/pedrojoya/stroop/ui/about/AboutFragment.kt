@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.ui.about
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.ui.AvatarFragment
 import kotlinx.android.synthetic.main.about_fragment.view.*
 
 class AboutFragment : Fragment() {
@@ -40,7 +40,9 @@ class AboutFragment : Fragment() {
 
     private fun setupAvatarFragment() {
         val ft: FragmentTransaction = fragmentManager!!.beginTransaction()
-        ft.replace(R.id.avatar_fragment, AvatarFragment())
+        ft.replace(R.id.avatar_fragment,
+            AvatarFragment()
+        )
         ft.commit()
     }
 
