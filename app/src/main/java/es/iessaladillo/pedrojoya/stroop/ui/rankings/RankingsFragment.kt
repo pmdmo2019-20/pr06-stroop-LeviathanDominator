@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.models.Ranking
+import es.iessaladillo.pedrojoya.stroop.models.RankingFilter
 import es.iessaladillo.pedrojoya.stroop.repository.RepositoryImpl
 import kotlinx.android.synthetic.main.rankings_fragment.*
 
@@ -73,7 +75,29 @@ class RankingsFragment : Fragment() {
         RepositoryImpl.rankings.observe(viewLifecycleOwner, rankingObserver)
 
         spFilter.setSelection(getDefaultSelection())
-        rvRankings.run {
+        spFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                RepositoryImpl.setRankingFilter(rankingFilter(position))
+            }
+
+            private fun rankingFilter(position: Int): RankingFilter {
+                when(position){
+                    1->return RankingFilter.TIME
+                    2->return RankingFilter.ATTEMPTS
+                }
+                return RankingFilter.ALL
+            }
+        }
+            rvRankings.run {
             layoutManager = LinearLayoutManager(context)
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter

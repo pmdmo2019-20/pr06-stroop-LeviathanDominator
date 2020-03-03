@@ -33,6 +33,7 @@ class RankingListAdapter : RecyclerView.Adapter<RankingListAdapter.ViewHolder>()
         RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(ranking: Ranking) {
             ranking.run {
+                lblName.text = player.name
                 imgAvatar.setImageResource(player.avatarId)
                 lblGameMode.text = setMode(gameMode)
                 lblMinutes.text = minutes.toString()

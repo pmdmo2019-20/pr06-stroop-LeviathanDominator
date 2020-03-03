@@ -34,8 +34,8 @@ object RepositoryImpl : Repository {
         MutableLiveData(requeryRankings())
     val rankings: LiveData<List<Ranking>>
         get() = _rankings
-// TODO User filter
-    private val _rankingsFilter: MutableLiveData<RankingFilter> = MutableLiveData()
+
+    private val _rankingsFilter: MutableLiveData<RankingFilter> = MutableLiveData(RankingFilter.ALL)
     val rankingsFilter: LiveData<RankingFilter>
         get() = _rankingsFilter
 
@@ -44,8 +44,16 @@ object RepositoryImpl : Repository {
             requeryRankings()
     }
 
-    private fun requeryRankings() =
-        rankingMutableList.toList()
+    private fun requeryRankings() : List<Ranking> {
+            val list = mutableListOf<Ranking>()
+            for (ranking: Ranking in  rankingMutableList){
+                if (ranking.gameMode == rankingsFilter.value || rankingsFilter.value == RankingFilter.ALL){
+                    list.add(ranking)
+                }
+            }
+            return list.sortedBy { it.points }
+    }
+
 
     private fun requeryPlayers() =
         playerMutableList.toList()
@@ -98,6 +106,7 @@ object RepositoryImpl : Repository {
 
     override fun setRankingFilter(filter: RankingFilter) {
         _rankingsFilter.value = filter
+        requeryRankings()
     }
 
 }

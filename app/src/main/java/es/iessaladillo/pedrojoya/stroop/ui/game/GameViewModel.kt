@@ -11,9 +11,7 @@ import kotlin.concurrent.thread
 import kotlin.random.Random
 
 
-class GameViewModel(
-    // TODO
-) : ViewModel() {
+class GameViewModel : ViewModel() {
 
     private val NUM_WORDS = 4
     private val INVALID_RETURN = -1
@@ -25,8 +23,6 @@ class GameViewModel(
     @Volatile
     private var millisUntilFinished: Int = 0
     private val handler: Handler = Handler()
-
-    // TODO
 
     private val _time: MutableLiveData<Int> =
         MutableLiveData(millisUntilFinished)
@@ -95,18 +91,15 @@ class GameViewModel(
     }
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
-        // TODO
             _time.value = millisUntilFinished
     }
 
     private fun onGameTimeFinish() {
         isGameFinished = true
         _isGameFinishedLiveData.value = isGameFinished
-        // TODO
     }
 
-    fun nextWord() {
-        // TODO
+    private fun nextWord() {
         if (attempts.value!! == 0){
             onGameTimeFinish()
         }
@@ -118,14 +111,12 @@ class GameViewModel(
         currentWordMillis = 0
         checkWord(true)
         nextWord()
-        // TODO
     }
 
     fun checkWrong() {
         currentWordMillis = 0
         checkWord(false)
         nextWord()
-        // TODO
     }
 
     private fun checkWord(right: Boolean) {

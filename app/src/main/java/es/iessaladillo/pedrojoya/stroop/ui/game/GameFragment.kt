@@ -26,8 +26,7 @@ class GameFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.game_fragment, container, false)
-        return view
+        return inflater.inflate(R.layout.game_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -65,7 +64,7 @@ class GameFragment : Fragment() {
                 val result = gameMode?.let { mode ->
                     Ranking(
                         RepositoryImpl.playerList.value!![RepositoryImpl.currentPlayer.value!!],
-                        mode, gameTime, viewModel.wordsNum.value!!, viewModel.correct
+                        mode, gameTime/60000, viewModel.wordsNum.value!!, viewModel.correct
                             .value!!, viewModel.points.value!!
                     )
                 }
